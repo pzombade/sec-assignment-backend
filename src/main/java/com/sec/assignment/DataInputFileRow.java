@@ -112,18 +112,18 @@ public class DataInputFileRow {
     }
 
     public List<KVPair> getTopFileNames(){
-        return printTheSort(fileNameCountMap);
+        return populateKVPair(fileNameCountMap, true);
     }
 
     public List<KVPair> getTopUserNames(){
-        return printTheSort(userNameCountMap);
+        return populateKVPair(userNameCountMap, true);
     }
 
     public List<KVPair> getDateActivitCountMap(){
         return populateKVPair(dateActivitCountMap, false);
     }
 
-    public List<KVPair> printTheSort(Map<String,Integer> map){
+    public List<KVPair> populateKVPair(Map<String,Integer> map){
         return getKvPairsList(new LinkedList(map.entrySet()));
     }
 
