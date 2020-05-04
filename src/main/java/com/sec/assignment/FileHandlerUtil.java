@@ -9,6 +9,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -20,6 +22,11 @@ public class FileHandlerUtil {
     private static String EXTRACTED_FOLDER = "C:\\Users\\pzombade\\Desktop\\sec\\extracted_files";
     private static String UPLOADED_FOLDER = "C:\\Users\\pzombade\\Desktop\\sec\\uploaded_files";
 
+    /**
+     * Save the uploaded files to a temporary location on the server
+     * @param file
+     * @return
+     */
     public static String saveFile(MultipartFile file) {
         if (file.isEmpty()) {
             System.out.println("Please select a file to upload");
@@ -39,6 +46,11 @@ public class FileHandlerUtil {
         return "Ok"; // fileHandler.getTopFileNames().toString();
     }
 
+
+    /**
+     * Unzip the zipped files
+     * @param file
+     */
     public static void unzip(MultipartFile file) {
         File dir = new File(EXTRACTED_FOLDER);
         // create output directory if it doesn't exist
@@ -84,5 +96,18 @@ public class FileHandlerUtil {
             e.printStackTrace();
         }
         System.out.println("Done Unzipping the files...");
+    }
+
+
+    /**
+     * Get the hour digit from the date
+     * @param dateTime - The date time
+     * @return the digit
+     */
+    public static String getHour(String dateTime){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date(dateTime));
+        int hours = calendar.get(Calendar.HOUR_OF_DAY);
+        return hours+"";
     }
 }

@@ -24,7 +24,6 @@ public class SecController {
     @PostMapping("/upload")
     public SecurityAppResponse processUpload(@RequestParam("fileKey") MultipartFile file){
         fileHandler.process(file);
-        fileHandler.process(file);
         fileHandler.parse();
         responseObject = new SecurityAppResponse();
         responseObject.setFileNameCountMap(fileHandler.getTopFileNames());
